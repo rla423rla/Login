@@ -21,6 +21,8 @@ function LoginPage() {
   const [password, setPassword] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [registeredUsers, setRegisteredUsers] = useState([]);
+  const [regUsername, setRegUsername] = useState("");
+  const [regPassword, setRegPassword] = useState("");
   const history = useHistory();
 
   const handleLogin = () => {
@@ -41,10 +43,12 @@ function LoginPage() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    const newUser = { username, password };
+    const newUser = { username: regUsername, password: regPassword };
     setRegisteredUsers([...registeredUsers, newUser]);
-    alert(`등록된 아이디: ${username}, 비밀번호: ${password}`);
+    alert(`등록된 아이디: ${regUsername}, 비밀번호: ${regPassword}`);
     setShowModal(false);
+    setRegUsername("");
+    setRegPassword("");
   };
 
   return (
@@ -88,8 +92,8 @@ function LoginPage() {
                 Username:
                 <input
                   type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={regUsername}
+                  onChange={(e) => setRegUsername(e.target.value)}
                 />
               </label>
               <br />
@@ -97,8 +101,8 @@ function LoginPage() {
                 Password:
                 <input
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={regPassword}
+                  onChange={(e) => setRegPassword(e.target.value)}
                 />
               </label>
               <br />
